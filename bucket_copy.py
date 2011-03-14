@@ -39,7 +39,7 @@ def copy_s3_bucket(SOURCE_BUCKET, DEST_BUCKET, prefix=None, threads=10):
 				pool_sema.acquire()
 				self.status = "%s : Sempahore Acquired, Copy Next" % datetime.datetime.now()
 				try:
-					thread_key.copy(DEST_BUCKET, self.key_name)
+					thread_key.copy(DEST_BUCKET, self.key_name, None, False, True)
 					self.status = "%s : Copy Success : %s" % (datetime.datetime.now(), self.key_name)
 				except:
 					self.status = "%s : Copy Error : %s" % (datetime.datetime.now(), sys.exc_info())
